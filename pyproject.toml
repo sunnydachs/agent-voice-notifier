@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-voice-notifier"
+version = "0.1.0"
+description = "Local VOICEVOX speech notifications for coding-agent hooks"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+agent-voice-notifier = "agent_voice_notifier.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/sunnydachs/agent-voice-notifier"
+Repository = "https://github.com/sunnydachs/agent-voice-notifier"
+Issues = "https://github.com/sunnydachs/agent-voice-notifier/issues"
+
+[tool.setuptools.packages.find]
+include = ["agent_voice_notifier*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

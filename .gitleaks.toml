@@ -1,0 +1,30 @@
+# gitleaks configuration — secrets + personal-environment leaks.
+# This file is PUBLIC: it contains only shapes, never real account values.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "absolute-home-path"
+description = "Absolute home path (a clone must run anywhere)"
+regex = '''(?i)(?:/home/|/Users/|/mnt/[a-z]/Users/)[a-z][a-z0-9_.-]{1,30}/'''
+tags = ["personal-environment"]
+
+[[rules.allowlists]]
+description = "Documentation, test and CI placeholders (not a real account)"
+regexes = [
+  '''(?i)/(?:home|Users)/(?:you|user|username|youruser|name|me|someone|example|dev|foo|bar|test|alice|bob|runner|runneradmin|ubuntu|ci|vagrant|theuser|youruser)/''',
+  '''(?i)/mnt/[a-z]/Users/(?:you|user|name|example|dev)/''',
+]
+
+[[rules]]
+id = "personal-email"
+description = "Personal email address (use the provider noreply alias)"
+regex = '''(?i)\b[A-Za-z0-9._%+-]+@(?:gmail|googlemail|outlook|hotmail|live|yahoo|icloud|me\.com|proton|protonmail|pm\.me|qq|163|126|ymail)\.[a-z]{2,}\b'''
+tags = ["personal-environment"]
+
+[[rules]]
+id = "personal-vault-path"
+description = "Personal notes vault or agent scratch path"
+regex = '''(?i)Obsidian Vault|obsidian://|/\.hermes/cache/scratch/'''
+tags = ["personal-environment"]
